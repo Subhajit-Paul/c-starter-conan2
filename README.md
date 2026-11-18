@@ -58,16 +58,16 @@ cmake --build --preset conan-debug
    build rules. The preset selects the Debug build, which includes information
    GDB uses to show source lines.
 3. `cmake --build --preset conan-debug` invokes Ninja to compile and link
-   `demo` and `test_main`.
+   `executable` and `test_main`.
 
 Run the program and then the tests.
 
 ```bash
-./build/Debug/demo
+./build/Debug/executable
 ctest --test-dir build/Debug --output-on-failure
 ```
 
-The demo prints `Hello World!` without a trailing newline, so your shell prompt
+The executable prints `Hello World!` without a trailing newline, so your shell prompt
 may appear on the same line. CTest runs the `starter_tests` entry and reports
 one passing test. That entry runs `tests/test_main.c`'s two example checks
 through the `test_main` executable. A failed check prints a message and returns
@@ -88,7 +88,7 @@ conan install . --build=missing -s build_type=Release \
 cmake --preset conan-release
 cmake --build --preset conan-release
 ctest --test-dir build/Release --output-on-failure
-./build/Release/demo
+./build/Release/executable
 ```
 
 ### Common setup errors
@@ -109,7 +109,7 @@ for more about how Conan selects Ninja.
 Build the Debug version first, then launch GDB from the project root.
 
 ```bash
-gdb ./build/Debug/demo
+gdb ./build/Debug/executable
 ```
 
 Enter these commands at the `(gdb)` prompt.
@@ -120,7 +120,7 @@ Enter these commands at the `(gdb)` prompt.
 | `run` | Start the program and pause before it prints. |
 | `next` | Execute the current line and stop at the next one, stepping over function calls. |
 | `backtrace` | Show the chain of active function calls. |
-| `continue` | Resume execution. The demo exits normally. |
+| `continue` | Resume execution. The executable exits normally. |
 | `quit` | Return to your shell. |
 
 For an exercise with local variables, open `gdb ./build/Debug/test_main`. Enter
@@ -138,7 +138,7 @@ substitutes the header's contents where you write `#include`.
 
 | Example | What it provides here |
 | --- | --- |
-| `#include <stdio.h>` | The C standard library declarations for input and output functions such as `printf`, used by the demo. |
+| `#include <stdio.h>` | The C standard library declarations for input and output functions such as `printf`, used by the executable. |
 | `#include <stdlib.h>` | C standard library utilities and the `EXIT_SUCCESS` and `EXIT_FAILURE` constants used by the tests. |
 | `#include <string.h>` | C standard library string functions such as `strlen`, used by the string-length check. |
 
