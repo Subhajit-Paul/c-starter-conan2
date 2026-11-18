@@ -1,15 +1,11 @@
 # C17 starter — Conan 2 + CMake + Ninja + GCC
 
-A deliberately small C project template for Python developers coming back to C.
-This is **not** Python-to-C compilation or Cython. The `pyc.h` helpers are plain
-C17, so GCC produces a normal native executable with no Python dependency.
+A small C project template C. native executable with no Python dependency.
 
 ## Contents
 
-- `include/pyc.h` — `print(x)` (one argument), `pyc_input(prompt)` (caller frees
-  returned string), and `PYC_VECTOR(Type, Name)` (typed dynamic array).
-- `src/main.c` — example including struct-based "class".
-- `tests/test_pyc.c` — lightweight test executable.
+- `src/main.c` — Hello World.
+- `tests/test_main.c` — lightweight test executable.
 - `conanfile.py` — Conan 2 project integration; **no third-party packages yet**.
 - `CMakeLists.txt` — CMake build and CTest tests using Ninja.
 
