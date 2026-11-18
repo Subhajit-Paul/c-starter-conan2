@@ -1,0 +1,20 @@
+name: C build
+on: [push, pull_request]
+jobs:
+  gcc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Conan
+        run: |
+          python -m pip install 'conan>=2,<3'
+          conan profile detect --force
+          conan install . --build=missing -s build_type=Debug
+      - name: Build and test
+        run: |
+          cmake --preset conan-debug
+          cmake --build --preset conan-debug
+          ctest --test-dir build/Debug --output-on-failure
